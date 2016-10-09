@@ -22,7 +22,6 @@ public abstract class ShapeModel implements ITransformable {
     @Override
     public void setRotation(float angle) {
         m_body.setTransform(m_body.getPosition(), angle);
-
     }
 
     @Override

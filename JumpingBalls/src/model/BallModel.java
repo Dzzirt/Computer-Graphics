@@ -1,9 +1,7 @@
 package model;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyType;
-import utils.Parameters;
+import utils.Constants;
 
 /**
  * Created by nikita.kuzin on 10/8/16.
@@ -11,7 +9,7 @@ import utils.Parameters;
 public class BallModel extends ShapeModel implements IMoveable {
 
     public BallModel(float radius) {
-        super(BodyFactory.createCircle(radius, new Parameters(BodyType.DYNAMIC, 1, 1, 1)));
+        super(BodyFactory.createCircle(radius, Constants.BALL_PHYSICS_PARAMS));
     }
 
     @Override

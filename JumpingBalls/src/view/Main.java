@@ -3,19 +3,14 @@ package view;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLJPanel;
-import model.BallModel;
 import model.CannonModel;
 import model.ObstacleModel;
 import org.jbox2d.callbacks.DebugDraw;
-import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.common.IViewportTransform;
-import org.jbox2d.common.OBBViewportTransform;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.World;
 import org.jbox2d.pooling.normal.DefaultWorldPool;
 import org.joml.Vector2i;
 import org.joml.Vector4i;
-import utils.Parameters;
 import utils.VertUtils;
 
 import javax.swing.*;
@@ -78,6 +73,7 @@ public class Main {
         obstacles.get(2).setPosition(55, 25);
         obstacles.get(3).setPosition(55, 55);
     }
+
     private static Frame createWindow(Vector2i size) {
         JFrame jFrame = new JFrame();
         jFrame.setSize(size.x, size.y);
