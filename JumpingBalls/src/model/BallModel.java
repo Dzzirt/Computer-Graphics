@@ -1,6 +1,7 @@
 package model;
 
 import org.jbox2d.common.Vec2;
+import rx.Observable;
 import utils.Constants;
 
 /**
@@ -15,5 +16,10 @@ public class BallModel extends ShapeModel implements IMoveable {
     @Override
     public void push(Vec2 power, Vec2 point) {
         m_body.applyForce(power, point);
+    }
+
+    @Override
+    public Observable getObservable() {
+        return null;
     }
 }

@@ -30,7 +30,7 @@ import java.util.List;
 public class Main {
 
     public static World world;
-
+    private GLJPanel m_glDrawable;
     private Config m_config;
     private List<ObstacleModel> m_obstacleModels;
     private List<WallModel> m_wallModels;
@@ -66,11 +66,11 @@ public class Main {
 
     private void createCanvas() {
         Frame window = createWindow(m_config.SCREEN_SIZE, m_config.FULLSCREEN);
-        GLJPanel glDrawable = createGlDrawable(new Vector4i(0, 0, m_config.WORLD_SIZE.x, m_config.WORLD_SIZE.y));
-        window.add(glDrawable);
+        m_glDrawable = createGlDrawable(new Vector4i(0, 0, m_config.WORLD_SIZE.x, m_config.WORLD_SIZE.y));
+        window.add(m_glDrawable);
         window.setVisible(true);
         if (m_config.DEBUG_DRAW) {
-            world.setDebugDraw(createJoglDebugDraw(glDrawable));
+            world.setDebugDraw(createJoglDebugDraw(m_glDrawable));
         }
     }
 
