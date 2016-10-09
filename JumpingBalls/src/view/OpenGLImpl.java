@@ -6,7 +6,6 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
 import com.jogamp.opengl.glu.GLU;
 import org.joml.Vector4i;
-import view.Main;
 
 import static com.jogamp.opengl.GL.*;
 
@@ -38,7 +37,6 @@ public class OpenGLImpl implements GLEventListener {
         GL2 gl2 = glAutoDrawable.getGL().getGL2();
         gl2.glClear(GL_COLOR_BUFFER_BIT);
         Main.world.drawDebugData();
-
     }
 
     @Override

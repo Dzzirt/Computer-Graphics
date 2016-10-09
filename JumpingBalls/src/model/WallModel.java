@@ -13,7 +13,7 @@ public class WallModel extends ShapeModel {
     public WallModel(Vec2 size) {
         super(BodyFactory.createComposite(new Shape[]{
                         new PolygonShape() {{
-                            setAsBox(size.x / 2.f, size.y / 2.f);
+                            setAsBox(size.x, size.y, new Vec2(0, -size.y), 0);
                         }}
                 },
                 Constants.WALL_PHYSICS_PARAMS));
