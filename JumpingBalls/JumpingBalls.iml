@@ -11,6 +11,6 @@
     <orderEntry type="library" name="org.jbox2d:jbox2d-library:2.2.1.1" level="project" />
     <orderEntry type="library" name="org.joml:joml:1.8.4" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.7" level="project" />
-    <orderEntry type="library" name="io.reactivex:rxjava:1.2.0" level="project" />
+    <orderEntry type="library" name="jogl-all" level="project" />
   </component>
 </module>

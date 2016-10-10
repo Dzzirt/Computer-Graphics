@@ -25,7 +25,7 @@ public class Config {
     public Config() {
         final String projectDir = System.getProperty("user.dir");
         final JsonParser jsonParser = new JsonParser();
-        final String json = FileUtils.getWholeText(projectDir + "\\src\\config.json");
+        final String json = FileUtils.getWholeText(projectDir + "/src/config.json");
         m_jsonRoot = jsonParser.parse(json).getAsJsonObject();
         initWorld(m_jsonRoot.getAsJsonObject("World"));
         initScreen(m_jsonRoot);

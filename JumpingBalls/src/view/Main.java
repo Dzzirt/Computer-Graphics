@@ -4,23 +4,29 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLJPanel;
 import model.CannonModel;
 import model.ObstacleModel;
 import model.WallModel;
+import observer.IDrawable;
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.pooling.normal.DefaultWorldPool;
+import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector4i;
+import utils.Color4;
 import utils.Config;
 import utils.Constants;
 import utils.VertUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +45,20 @@ public class Main {
     public Main() {
         m_config = new Config();
         createWorld(m_config.getJsonRoot());
-        createCanvas();
         m_obstacleModels = createObstacles(m_config.getJsonRoot());
         m_wallModels = createWalls(m_config.getJsonRoot());
         m_cannonModel = createCannon(m_config.getJsonRoot());
+        m_cannonModel.setRotation(45);
+        Vector2f viewPos = new Vector2f(m_cannonModel.getPosition().x, m_cannonModel.getPosition().y);
+        CannonView cannonView = new CannonView(viewPos, Constants.CANNON_CIRCLE_RADIUS,
+                new Color4(142, 68, 173, 1.f));
+        m_cannonModel.addObserver(cannonView);
+        m_cannonModel.notifyObservers();
+        ArrayList<IDrawable> drawables = new ArrayList<>();
+        drawables.add(cannonView);
+        createCanvas(drawables);
+
+
     }
 
     public static void main(String[] args) {
@@ -64,14 +80,36 @@ public class Main {
         return cannonModel;
     }
 
-    private void createCanvas() {
+    private GLEventListener createCanvas(List<IDrawable> drawables) {
         Frame window = createWindow(m_config.SCREEN_SIZE, m_config.FULLSCREEN);
-        m_glDrawable = createGlDrawable(new Vector4i(0, 0, m_config.WORLD_SIZE.x, m_config.WORLD_SIZE.y));
+        Vector4i worldBoundingBox = new Vector4i(0, 0, m_config.WORLD_SIZE.x, m_config.WORLD_SIZE.y);
+        OpenGLImpl glListener = new OpenGLImpl(drawables, worldBoundingBox);
+        m_glDrawable = createGlDrawable(glListener);
         window.add(m_glDrawable);
         window.setVisible(true);
         if (m_config.DEBUG_DRAW) {
             world.setDebugDraw(createJoglDebugDraw(m_glDrawable));
         }
+        window.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                world.step(m_config.FRAME_RATE, m_config.VELOCITY_ITERATIONS, m_config.POSITION_ITERATIONS);
+                m_cannonModel.notifyObservers();
+                m_glDrawable.display();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+        return glListener;
+
     }
 
     private List<WallModel> createWalls(JsonObject object) {
@@ -87,7 +125,7 @@ public class Main {
             final float y = posArr.get(1).getAsFloat();
             final WallModel wall = new WallModel(new Vec2(halfWidth, halfHeight));
             if (angle != null) {
-                wall.setRotation(angle.getAsFloat() * Constants.DEGREES_TO_RADIANS);
+                wall.setRotation(angle.getAsFloat());
             }
             wall.setPosition(x, y);
             wallModelList.add(wall);
@@ -122,11 +160,11 @@ public class Main {
         return jFrame;
     }
 
-    private static GLJPanel createGlDrawable(Vector4i worldBoundingBox) {
+    private static GLJPanel createGlDrawable(GLEventListener listener) {
         GLProfile glProfile = GLProfile.get(GLProfile.GL2);
         GLCapabilities glCapabilities = new GLCapabilities(glProfile);
         GLJPanel gljPanel = new GLJPanel(glCapabilities);
-        gljPanel.addGLEventListener(new OpenGLImpl(worldBoundingBox));
+        gljPanel.addGLEventListener(listener);
         return gljPanel;
     }
 

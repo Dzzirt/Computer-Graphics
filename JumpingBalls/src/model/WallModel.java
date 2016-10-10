@@ -3,7 +3,6 @@ package model;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
-import rx.Observable;
 import utils.Constants;
 
 /**
@@ -18,10 +17,7 @@ public class WallModel extends ShapeModel {
                         }}
                 },
                 Constants.WALL_PHYSICS_PARAMS));
+
     }
 
-    @Override
-    public Observable getObservable() {
-        return null;
-    }
 }

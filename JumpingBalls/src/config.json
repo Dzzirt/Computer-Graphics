@@ -15,10 +15,10 @@
   },
   "Screen": {
     "size": [
-      1920,
-      1080
+      800,
+      600
     ],
-    "full_screen": true
+    "full_screen": false
   },
   "Wall0": {
     "half_size": [
