@@ -34,7 +34,7 @@ public class BodyFactory {
     private static Body createBody(Shape[] shapes , Parameters params) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = params.type;
-        Body body = Main.world.createBody(bodyDef);
+        Body body = WorldModel.world.createBody(bodyDef);
         for (Shape shape : shapes) {
             FixtureDef fixtureDef = new FixtureDef();
             fixtureDef.shape = shape;

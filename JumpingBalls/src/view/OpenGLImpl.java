@@ -5,6 +5,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
 import com.jogamp.opengl.glu.GLU;
+import model.WorldModel;
 import observer.IDrawable;
 import org.joml.Vector4i;
 
@@ -46,7 +47,7 @@ public class OpenGLImpl implements GLEventListener {
     public void display(GLAutoDrawable glAutoDrawable) {
         GL2 gl2 = glAutoDrawable.getGL().getGL2();
         gl2.glClear(GL_COLOR_BUFFER_BIT);
-        Main.world.drawDebugData();
+        WorldModel.world.drawDebugData();
         for (IDrawable drawable : m_drawables) {
             drawable.draw(gl2);
         }
