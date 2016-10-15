@@ -5,9 +5,5 @@ import org.joml.Vector2f;
 /**
  * Created by nikita.kuzin on 10/10/16.
  */
-public interface IVertsObservable {
-    void notifyObservers();
-    void addObserver(IVertsObserver o);
-    void deleteObserver(IVertsObserver o);
-    void deleteObservers();
+public interface IVertsObservable extends IObservervable<IVertsObserver> {
 }

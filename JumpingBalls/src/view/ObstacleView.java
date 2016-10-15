@@ -7,13 +7,13 @@ import org.joml.Vector2f;
 import utils.Color4;
 
 /**
- * Created by nikita.kuzin on 10/11/16.
+ * Created by nikita.kuzin on 10/12/16.
  */
-public class WallView implements IVertsObserver, IDrawable {
+public class ObstacleView implements IDrawable, IVertsObserver {
 
     private VertexView m_vertexView;
 
-    public WallView(Color4 color) {
+    public ObstacleView(Color4 color) {
         m_vertexView = new VertexView(null, color);
     }
 

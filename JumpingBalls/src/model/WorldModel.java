@@ -18,16 +18,17 @@ import java.util.List;
 public class WorldModel {
 
     public static World world;
-
     private CannonModel m_cannon;
     private List<WallModel> m_walls;
     private List<ObstacleModel> m_obstacles;
+    private List<BallModel> m_balls;
     private Config m_config;
 
     public WorldModel(Config config) {
         m_config = config;
         JsonObject jsonRoot = m_config.getJsonRoot();
         world = createWorld();
+        m_balls = new ArrayList<>();
         m_walls = createWalls(jsonRoot);
         m_obstacles = createObstacles(jsonRoot);
         m_cannon = createCannon(jsonRoot);
@@ -43,6 +44,10 @@ public class WorldModel {
 
     public List<ObstacleModel> getObstacleModels() {
         return m_obstacles;
+    }
+
+    public List<BallModel> getBalls() {
+        return m_balls;
     }
 
     private World createWorld() {

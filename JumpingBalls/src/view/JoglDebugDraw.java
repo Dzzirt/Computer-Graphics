@@ -1,7 +1,9 @@
 package view;
 
+import com.jogamp.newt.opengl.GLWindow;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.awt.GLJPanel;
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.common.*;
@@ -12,9 +14,9 @@ import org.joml.Math;
  */
 public class JoglDebugDraw extends DebugDraw {
 
-    private GLJPanel m_gl;
+    private GLCanvas m_gl;
 
-    public JoglDebugDraw(GLJPanel gl) {
+    public JoglDebugDraw(GLCanvas gl) {
         super(new OBBViewportTransform());
         m_gl = gl;
     }

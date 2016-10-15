@@ -29,7 +29,8 @@
       2,
       0
     ],
-    "angle": 180
+    "angle": 180,
+    "color": [26, 188, 156, 1]
   },
   "Wall1": {
     "half_size": [
@@ -40,7 +41,8 @@
       96,
       0
     ],
-    "angle": 180
+    "angle": 180,
+    "color": [26, 188, 156, 1]
   },
   "Wall2": {
     "half_size": [
@@ -51,7 +53,8 @@
     "pos": [
       0,
       98
-    ]
+    ],
+    "color": [26, 188, 156, 1]
   },
   "Wall3": {
     "half_size": [
@@ -62,7 +65,8 @@
     "pos": [
       30,
       10
-    ]
+    ],
+    "color": [26, 188, 156, 1]
   },
   "Obstacle0": {
     "pos": [
@@ -71,7 +75,8 @@
     ],
     "min_scatter_radius": 10,
     "max_scatter_radius": 15,
-    "vertex_count": 8
+    "vertex_count": 8,
+    "color": [26, 188, 156,1.0]
   },
   "Obstacle1": {
     "pos": [
@@ -80,7 +85,8 @@
     ],
     "min_scatter_radius": 10,
     "max_scatter_radius": 15,
-    "vertex_count": 8
+    "vertex_count": 8,
+    "color": [26, 188, 156,1.0]
   },
   "Obstacle2": {
     "pos": [
@@ -89,7 +95,8 @@
     ],
     "min_scatter_radius": 10,
     "max_scatter_radius": 15,
-    "vertex_count": 8
+    "vertex_count": 8,
+    "color": [26, 188, 156,1.0]
   },
   "Obstacle3": {
     "pos": [
@@ -98,15 +105,18 @@
     ],
     "min_scatter_radius": 10,
     "max_scatter_radius": 15,
-    "vertex_count": 8
+    "vertex_count": 8,
+    "color": [26, 188, 156,1.0]
   },
   "Cannon": {
     "pos": [
       50,
       50
-    ]
+    ],
+    "color": [142, 68, 173, 1]
   },
   "Ball": {
-    "radius": 1
+    "radius": 1,
+    "color": [241, 196, 15,1.0]
   }
 }

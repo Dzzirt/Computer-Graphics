@@ -1,5 +1,6 @@
 package model;
 
+import javafx.beans.Observable;
 import observer.IVertsObservable;
 import observer.IVertsObserver;
 import org.jbox2d.collision.shapes.CircleShape;
